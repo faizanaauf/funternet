@@ -1,166 +1,64 @@
-# 🕹️ FUNTERNET ARCADE
+# Funternet Arcade
 
-> **“The internet is full of information. We make it playable.”**  
-> *Theme: Make Internet Fun • Hackathon Special Edition*
+**Turn dense internet content into interactive AI-assisted learning games.**
 
----
+Funternet Arcade is a Next.js experiment in gamification: paste text or choose a topic, select a game style, and turn the material into an interactive challenge. The project explores whether playful interaction can make technical documentation, policy text, study material, and other dense content easier to engage with.
 
-## 💡 The Problem
+## Highlights
 
-The modern web is congested with essential but mind-numbing text: 40-page Terms & Conditions agreements, dense technical specifications, academic papers, documentation, and policy notices. 
+- Multiple game formats, including boss battles, trivia, escape-room-style challenges, adventures, and speed challenges.
+- Google Gemini integration through the `@google/genai` SDK.
+- Structured AI output validation with Zod.
+- Web Audio API sound effects without external audio files.
+- XP, streaks, achievements, sharing, and local game history.
+- Bundled demo experiences so the interface can still be explored without a successful AI request.
 
-Because it's boring, **99% of people skim or ignore it entirely**, unknowingly clicking away their digital privacy or struggling to absorb complex educational material.
+## Tech stack
 
-## ⚡ The Solution: Funternet Arcade
+- Next.js 16 / React 19
+- TypeScript
+- Tailwind CSS
+- Google GenAI SDK
+- Zod
+- Framer Motion
+- Web Audio API
+- canvas-confetti and Lucide React
 
-**Funternet Arcade** turns boring internet content into interactive, AI-generated games in seconds.
+## Local setup
 
-Instead of reading a 40-page legal document, you battle the **"Terms & Conditions Demon"**, depleting its HP with critical hits by exposing sneaky arbitration clauses and cookie traps. Instead of falling asleep reading JavaScript documentation, you navigate the **"JavaScript Dungeon"**, dodging closures and event loop microtasks!
-
----
-
-## 🎯 How It Works
-
-```
-┌─────────────────────────┐
-│ Paste Any Boring Text   │  (Articles, Terms & Conditions, notes, or topics)
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Choose Game Experience  │  (Boss Battle, Trivia Rush, Escape Room, Speed Challenge)
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Gemini 3.8 Flash Engine │  (Extracts key logic, builds narrative stages & boss)
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Interactive Arcade Play │  (Audio FX, streak multipliers, boss battle & XP rewards)
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Victory & Share Score   │  (Confetti celebration, dynamic achievement badges)
-└─────────────────────────┘
-```
-
----
-
-## ✨ Features
-
-- 🎮 **7 Distinct Game Modes**:
-  - **Surprise Me**: AI picks the optimal playful format for the topic.
-  - **Boss Battle**: High-stakes showdown with an animated boss, HP bar, and damage values.
-  - **Trivia Rush**: High-tempo gauntlet with streak multipliers.
-  - **Escape Room**: Cryptic logic obstacles and protocol riddles.
-  - **Mystery Quest**: Story-driven investigation arc.
-  - **Choose Your Adventure**: Branching tactical scenarios.
-  - **Speed Challenge**: Fast-paced countdown timer reflexes.
-- 👾 **Epic Boss Battles**:
-  - CSS/emoji animated avatars with idle breathing, rage mode, and impact shakes.
-  - Real-time HP bar depletion (`-25 HP`, `-50 HP CRITICAL HIT!`).
-  - Humorous boss speech bubbles reacting to player moves.
-- 🎵 **Pure Web Audio API Sound Synthesizer**:
-  - 100% offline-safe sound effects (8-bit coin chime, laser hits, wrong buzzer, victory fanfare).
-  - Respectful default volume with global one-tap Mute/Unmute toggle.
-- 🔥 **Arcade Progression & HUD**:
-  - Animated XP counters (`+100 XP`, `+250 XP`).
-  - Streak flame with `x2` and `x3` multipliers.
-  - Accuracy metrics and dynamic completion progress bar.
-- 🏆 **Dynamic Achievements & Social Sharing**:
-  - Contextual badges: *"Terms & Conditions Slayer"*, *"Packet Destroyer"*, *"Singularity Surfer"*.
-  - Native Web Share API integration with instant clipboard copy fallback and toast confirmation.
-- ⚡ **Daily Internet Chaos Mode**:
-  - 3 rotating homepage micro-challenges (*"CAPTCHA Goblin"*, *"Real vs Ridiculous Headline"*, *"Decode Internet Slang"*) playable in 30 seconds.
-- 💾 **Local Cartridge History**:
-  - Automatically saves the last 5 generated games in `localStorage` for instant replay.
-- 🛡️ **Hackathon Presentation Proof (Demo Mode)**:
-  - Bundled with 3 complete, rich offline demo presets (*Terms & Conditions Demon*, *JavaScript Dungeon*, *Black Hole Singularity*) ensuring a live demo never fails due to Wi-Fi drops or API rate limits.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework**: [Next.js 16 App Router](https://nextjs.org/) (Turbopack, React 19)
-- **Language**: TypeScript (Strict Mode)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with light grid-paper aesthetic and playful neobrutalist arcade styling
-- **Animations**: [Framer Motion](https://www.framer.com/motion/) (smooth transitions, boss shake, popups)
-- **AI Model**: [Google Gemini API](https://ai.google.dev/) (`@google/genai` SDK, model `gemini-3.8-flash`)
-- **Schema Validation**: [Zod](https://zod.dev/) for strict typed validation of AI responses
-- **Audio**: Web Audio API (Zero external MP3 asset dependency)
-- **Effects**: `canvas-confetti`
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **State & Storage**: Client-side `localStorage` persistence
-
----
-
-## 🤖 Gemini API Integration
-
-The server route `app/api/generate-game/route.ts` communicates securely with Gemini using the modern `@google/genai` SDK:
-
-- **System Persona**: Expert educational game designer, comedian, and interactive storyteller.
-- **Structured JSON Schema**: Enforces structured stage questions, boss configurations, explanations, and dynamic achievements.
-- **Fail-Safe Self-Healing**: Automated regex cleanup for markdown formatting and a one-shot automatic retry on malformed payloads.
-- **Intelligent Procedural Fallback**: If an API key is missing or quota is exceeded, the system dynamically synthesizes a custom game so users always get a working experience.
-
----
-
-## 🚀 Quickstart & Local Setup
-
-### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/funternet-arcade.git
-cd funternet-arcade
-```
-
-### 2. Install dependencies
-```bash
-npm install
-```
-
-### 3. Configure Environment Variables
-Create a `.env.local` file from the provided `.env.example`:
-```bash
+git clone https://github.com/faizanaauf/funternet.git
+cd funternet
+npm ci
 cp .env.example .env.local
-```
-
-Add your Gemini API key:
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-```
-*(Note: If no key is set, the app seamlessly runs on demo presets and procedural engines!)*
-
-### 4. Run Development Server
-```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 5. Production Build
+Add the API credential described in `.env.example` to `.env.local` if you want AI generation. Never commit your real API key.
+
+Open `http://localhost:3000`.
+
+## Quality checks
+
 ```bash
+npm run lint
 npm run build
-npm run start
 ```
 
----
+CI runs these checks on pushes and pull requests to `main`.
 
-## 🌐 Deploying to Vercel
+## How it works
 
-1. Push your repository to GitHub.
-2. Import the project into [Vercel](https://vercel.com).
-3. In Project Settings &rarr; Environment Variables, add:
-   - `GEMINI_API_KEY`: Your Google Gemini API key.
-4. Click **Deploy**.
+The browser collects the source material and game preferences. The server-side `app/api/generate-game` route validates the request and delegates generation to the Gemini integration in `lib/`. The resulting structured game is rendered by the interactive client experience.
 
----
+## Limitations
 
-## 🔮 Future Improvements
+AI-generated educational content can contain mistakes. Treat generated explanations as an interactive learning aid rather than an authoritative source, especially for legal, medical, financial, or other high-stakes material.
 
-- Multiplayer speed-rush lobbies via WebSockets.
-- Browser extension to gamify any selected webpage with right-click.
-- Community leaderboard and user-created arcade cartridges.
+## Contributing
 
----
+Issues and focused pull requests are welcome. For code changes, run lint and a production build before opening a PR.
 
-## 🎪 Hackathon Theme: "Make Internet Fun"
+## Author
 
-The internet was founded on curiosity, exploration, and playfulness, but over decades has become cluttered with sterile corporate portals and legalese. **Funternet Arcade** revives that original spirit of the web by proving that **any** boring piece of digital information can become a fun, memorable video game.
+Built by [Muhammad Faizan](https://github.com/faizanaauf).
